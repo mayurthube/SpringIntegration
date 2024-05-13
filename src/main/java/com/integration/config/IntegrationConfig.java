@@ -33,7 +33,7 @@ public class IntegrationConfig {
 	}
 	
 	 @Bean
-	 //@InboundChannelAdapter(value="fileInputChannel", poller = @Poller(fixedDelay = "1000"))
+	 @InboundChannelAdapter(value="fileInputChannel", poller = @Poller(fixedDelay = "1000"))
 	    public FileReadingMessageSource fileReader() {
 		 	CompositeFileListFilter<File> filter = new CompositeFileListFilter<>();
 		 	filter.addFilter(new SimplePatternFileListFilter(".txt"));
@@ -43,7 +43,7 @@ public class IntegrationConfig {
 	        return source;
 	    }
 	 @Bean
-	 //@ServiceActivator(inputChannel="fileInputChannel")
+	 @ServiceActivator(inputChannel="fileInputChannel")
 	    public FileWritingMessageHandler fileWriter() {
 	        FileWritingMessageHandler handler = new FileWritingMessageHandler(
 	                new File("destination")
